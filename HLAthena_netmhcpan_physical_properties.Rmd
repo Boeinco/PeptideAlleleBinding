@@ -1,0 +1,301 @@
+---
+title: "HLAthena_netmhcpan_physical_properties"
+author: "Austin"
+date: "2/7/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyr)
+library(ggplot2)
+library(reshape2)
+library(data.table)
+library(dplyr)
+setwd("/Users/nguyenau/Documents/Coding/Viral_binding_affinity_analysis/HLAthena_preds")
+rm(list=ls())
+big_allele_list <- c("HLA-A02:02","HLA-A02:06","HLA-A68:01","HLA-A02:03","HLA-A02:01","H-2-Kb","HLA-A11:01","HLA-A30:02","HLA-A31:01","HLA-B15:01","HLA-B35:01","HLA-A30:01","HLA-B07:02","HLA-A03:01","HLA-A29:02","HLA-A68:02","HLA-B08:01","HLA-B58:01","HLA-A23:01","HLA-A24:02","H-2-Db","HLA-A33:01","HLA-B40:01","HLA-B27:05","HLA-B44:02","HLA-B57:01","HLA-A01:01","HLA-B51:01","HLA-A26:01","HLA-A69:01","HLA-B18:01")
+bighlathena_list <- gsub("HLA-", "", big_allele_list)
+bighlathena_list <- gsub(":", "", bighlathena_list)
+rm(big_allele_list)
+```
+
+```{r test_diff_pipeline_cmv}
+cmv_new <- read.csv("cmv_hlathena_out.txt")
+colnames(cmv_new) <- c("Peptide", "Allele", "Score")
+cmv_new$Peptide <- gsub("'", '', cmv_new$Peptide, perl=TRUE)
+cmv_new$Allele <- gsub("'", '', cmv_new$Allele, perl=TRUE)
+cmv_new$Score <- gsub("'", '', cmv_new$Score, perl=TRUE)
+cmv_new_filt <- cmv_new[cmv_new$Allele %in% bighlathena_list,]
+cmv_new_filt$Score <- as.numeric(cmv_new_filt$Score)
+cmv_new_filt_0.5 <- cmv_new_filt[cmv_new_filt$Score > 0.5,]
+
+rm(cmv_new)
+#cmv_old <- read.csv("/Users/nguyenau/Documents/Coding/Viral_binding_affinity_analysis/cmv_hlathena-predictions.txt", sep='\t')
+#cmv_old_filt <- cmv_old %>% select(1,seq(4,60,2))
+#cmv_old_filt <- cmv_old_filt %>% gather(Allele, Score, -pep)
+#cmv_old_filt$Allele <- gsub("MSi_", "", cmv_old_filt$Allele, perl=TRUE)
+#colnames(cmv_old_filt) <- c("Peptide", "Allele", "Score")
+#cmv_old_filt <- cmv_old_filt[cmv_old_filt$Allele %in% bighlathena_list,]
+
+cmv_new_filt_0.5 <- cmv_new_filt[cmv_new_filt$Score > 0.5,]
+#cmv_old_filt_0.5 <- cmv_old_filt[cmv_old_filt$Score > 0.5,]
+#rm(cmv_old_filt)
+#rm(cmv_old)
+#rm(cmv_old_filt_0.5)
+```
+
+
+```{r load betaherpes_6a}
+betaherpes_6a_new <- read.csv("betaherpes_6a_hlathena_out.txt")
+colnames(betaherpes_6a_new) <- c("Peptide", "Allele", "Score")
+betaherpes_6a_new$Peptide <- gsub("'", '', betaherpes_6a_new$Peptide, perl=TRUE)
+betaherpes_6a_new$Allele <- gsub("'", '', betaherpes_6a_new$Allele, perl=TRUE)
+betaherpes_6a_new$Score <- gsub("'", '', betaherpes_6a_new$Score, perl=TRUE)
+betaherpes_6a_new_filt <- betaherpes_6a_new[betaherpes_6a_new$Allele %in% bighlathena_list,]
+betaherpes_6a_new_filt$Score <- as.numeric(betaherpes_6a_new_filt$Score)
+betaherpes_6a_new_filt_0.5 <- betaherpes_6a_new_filt[betaherpes_6a_new_filt$Score > 0.5,]
+rm(betaherpes_6a_new)
+```
+
+```{r load bk}
+bk_new <- read.csv("bk_hlathena_out.txt")
+colnames(bk_new) <- c("Peptide", "Allele", "Score")
+bk_new$Peptide <- gsub("'", '', bk_new$Peptide, perl=TRUE)
+bk_new$Allele <- gsub("'", '', bk_new$Allele, perl=TRUE)
+bk_new$Score <- gsub("'", '', bk_new$Score, perl=TRUE)
+bk_new_filt <- bk_new[bk_new$Allele %in% bighlathena_list,]
+bk_new_filt$Score <- as.numeric(bk_new_filt$Score)
+bk_new_filt_0.5 <- bk_new_filt[bk_new_filt$Score > 0.5,]
+rm(bk_new)
+```
+
+```{r load cmv}
+cmv_hlathena <- cmv_new_filt
+cmv_hlathena_0.5 <- cmv_new_filt_0.5
+rm(cmv_new_filt)
+rm(cmv_new_filt_0.5)
+```
+
+```{r load covid}
+covid_new <- read.csv("covid_hlathena_out.txt")
+colnames(covid_new) <- c("Peptide", "Allele", "Score")
+covid_new$Peptide <- gsub("'", '', covid_new$Peptide, perl=TRUE)
+covid_new$Allele <- gsub("'", '', covid_new$Allele, perl=TRUE)
+covid_new$Score <- gsub("'", '', covid_new$Score, perl=TRUE)
+covid_new_filt <- covid_new[covid_new$Allele %in% bighlathena_list,]
+covid_new_filt$Score <- as.numeric(covid_new_filt$Score)
+covid_new_filt_0.5 <- covid_new_filt[covid_new_filt$Score > 0.5,]
+rm(covid_new)
+
+```
+
+```{r load ebv}
+ebv_new <- read.csv("ebv_hlathena_out.txt")
+colnames(ebv_new) <- c("Peptide", "Allele", "Score")
+ebv_new$Peptide <- gsub("'", '', ebv_new$Peptide, perl=TRUE)
+ebv_new$Allele <- gsub("'", '', ebv_new$Allele, perl=TRUE)
+ebv_new$Score <- gsub("'", '', ebv_new$Score, perl=TRUE)
+ebv_new_filt <- ebv_new[ebv_new$Allele %in% bighlathena_list,]
+ebv_new_filt$Score <- as.numeric(ebv_new_filt$Score)
+ebv_new_filt_0.5 <- ebv_new_filt[ebv_new_filt$Score > 0.5,]
+rm(ebv_new)
+
+```
+
+```{r load herpes_1_17}
+herpes_1_17_new <- read.csv("herpes_1_17_hlathena_out.txt")
+colnames(herpes_1_17_new) <- c("Peptide", "Allele", "Score")
+herpes_1_17_new$Peptide <- gsub("'", '', herpes_1_17_new$Peptide, perl=TRUE)
+herpes_1_17_new$Allele <- gsub("'", '', herpes_1_17_new$Allele, perl=TRUE)
+herpes_1_17_new$Score <- gsub("'", '', herpes_1_17_new$Score, perl=TRUE)
+herpes_1_17_new_filt <- herpes_1_17_new[herpes_1_17_new$Allele %in% bighlathena_list,]
+herpes_1_17_new_filt$Score <- as.numeric(herpes_1_17_new_filt$Score)
+herpes_1_17_new_filt_0.5 <- herpes_1_17_new_filt[herpes_1_17_new_filt$Score > 0.5,]
+rm(herpes_1_17_new)
+
+```
+
+```{r load herpes_2_hg52}
+herpes_2_hg52_new <- read.csv("herpes_2_hg52_hlathena_out.txt")
+colnames(herpes_2_hg52_new) <- c("Peptide", "Allele", "Score")
+herpes_2_hg52_new$Peptide <- gsub("'", '', herpes_2_hg52_new$Peptide, perl=TRUE)
+herpes_2_hg52_new$Allele <- gsub("'", '', herpes_2_hg52_new$Allele, perl=TRUE)
+herpes_2_hg52_new$Score <- gsub("'", '', herpes_2_hg52_new$Score, perl=TRUE)
+herpes_2_hg52_new_filt <- herpes_2_hg52_new[herpes_2_hg52_new$Allele %in% bighlathena_list,]
+herpes_2_hg52_new_filt$Score <- as.numeric(herpes_2_hg52_new_filt$Score)
+herpes_2_hg52_new_filt_0.5 <- herpes_2_hg52_new_filt[herpes_2_hg52_new_filt$Score > 0.5,]
+rm(herpes_2_hg52_new)
+
+```
+
+
+```{r load human}
+human <- read.csv("/Users/nguyenau/Documents/Coding/Viral_binding_affinity_analysis/human_hlathena-predictions.txt", sep="\t")
+human_filt <- human %>% select(1,seq(4,60,2))
+human_hlathena <- human_filt %>% gather(Allele, Score, -pep)
+rm(human)
+rm(human_filt)
+human_hlathena$Allele <- gsub("MSi_", "", human_hlathena$Allele)
+human_new_filt <- human_hlathena[human_hlathena$Allele %in% bighlathena_list,]
+human_new_filt$Score <- as.numeric(human_new_filt$Score)
+human_new_filt_0.5 <- human_new_filt[human_new_filt$Score > 0.5,]
+rm(human_hlathena)
+```
+
+```{r load random}
+random_new <- read.csv("random_hlathena_out.txt")
+colnames(random_new) <- c("Peptide", "Allele", "Score")
+random_new$Peptide <- gsub("'", '', random_new$Peptide, perl=TRUE)
+random_new$Allele <- gsub("'", '', random_new$Allele, perl=TRUE)
+random_new$Score <- gsub("'", '', random_new$Score, perl=TRUE)
+random_new_filt <- random_new[random_new$Allele %in% bighlathena_list,]
+random_new_filt$Score <- as.numeric(random_new_filt$Score)
+random_new_filt_0.5 <- random_new_filt[random_new_filt$Score > 0.5,]
+rm(random_new)
+
+```
+
+
+```{r load master_reverse}
+#master_reverse_new <- read.csv("master_reverse_out.txt")
+#colnames(master_reverse_new) <- c("Peptide", "Allele", "Score")
+#master_reverse_new$Peptide <- gsub("'", '', master_reverse_new$Peptide, perl=TRUE)
+#master_reverse_new$Allele <- gsub("'", '', master_reverse_new$Allele, perl=TRUE)
+#master_reverse_new$Score <- gsub("'", '', master_reverse_new$Score, perl=TRUE)
+#master_reverse_new_filt <- master_reverse_new[master_reverse_new$Allele %in% bighlathena_list,]
+#master_reverse_new_filt$Score <- as.numeric(master_reverse_new_filt$Score)
+#master_reverse_new_filt_0.5 <- master_reverse_new_filt[master_reverse_new_filt$Score > 0.5,]
+#rm(master_reverse_new)
+```
+
+
+
+
+```{r herpes_6b only}
+order <- read.csv("/Users/nguyenau/Documents/Coding/Viral_binding_affinity_analysis/herpes_6b_2000netmhcpan_rank_by_cutoffs_hlathena.csv")
+order$X <- NULL
+
+listcols <- c(1,seq(2,20,2))
+order_only <- order[,listcols]
+colnames(order_only) <- c("Var1", seq(0.5,0.95, 0.05))
+herpes_6b_order <- order_only
+rm(order)
+rm(order_only)
+herpes_6b_order <- select(herpes_6b_order, c("Var1", "0.5"))
+```
+
+```{r select orders}
+betaherpes_6a_order <- as.data.frame(table(betaherpes_6a_new_filt_0.5$Allele))
+bk_order <- as.data.frame(table(bk_new_filt_0.5$Allele))
+cmv_order <- as.data.frame(table(cmv_hlathena_0.5$Allele))
+covid_order <- as.data.frame(table(covid_new_filt_0.5$Allele))
+ebv_order <- as.data.frame(table(ebv_new_filt_0.5$Allele))
+herpes_1_17_order <- as.data.frame(table(herpes_1_17_new_filt_0.5$Allele))
+herpes_2_hg52_order <- as.data.frame(table(herpes_2_hg52_new_filt_0.5$Allele))
+human_order <- as.data.frame(table(human_new_filt_0.5$Allele))
+random_order <- as.data.frame(table(random_new_filt_0.5$Allele))
+
+colnames(herpes_6b_order)[2] <- "herpes_6b"
+colnames(betaherpes_6a_order)[2] <- "betaherpes_6a"
+colnames(bk_order)[2] <- "bk"
+colnames(cmv_order)[2] <- "cmv"
+colnames(covid_order)[2] <- "covid"
+colnames(ebv_order)[2] <- "ebv"
+colnames(herpes_1_17_order)[2] <- "herpes_1_17"
+colnames(herpes_2_hg52_order)[2] <- "herpes_2_hg52"
+colnames(human_order)[2] <- "human"
+colnames(random_order)[2] <- "random"
+
+
+merged_orders <- merge(herpes_6b_order, betaherpes_6a_order, by="Var1")
+merged_orders <- merge(merged_orders, bk_order, by="Var1")
+merged_orders <- merge(merged_orders, cmv_order, by="Var1")
+merged_orders <- merge(merged_orders, covid_order, by="Var1")
+merged_orders <- merge(merged_orders, ebv_order, by="Var1")
+merged_orders <- merge(merged_orders, herpes_1_17_order, by="Var1")
+merged_orders <- merge(merged_orders, herpes_2_hg52_order, by="Var1")
+merged_orders <- merge(merged_orders, human_order, by="Var1")
+merged_orders <- merge(merged_orders, random_order, by="Var1")
+
+cormat <- cor(merged_orders[,-1], method="spearman")
+```
+
+
+```{r physical property space}
+#masterfile <- read.csv("/Users/nguyenau/Documents/Coding/Viral_binding_affinity_analysis/umap/pipeline_umap/master_peptide_umap.csv")
+
+#masterfile <- read.csv("/Users/nguyenau/Documents/Coding/Viral_binding_affinity_analysis/umap/pipeline_umap/masterfile_features.csv")
+#masterfile <- read.csv("/Users/nguyenau/Documents/Coding/Viral_binding_affinity_analysis/umap/masterfile_with_rev_human_features.csv") ###WHEN WE HAVE MEMORY
+
+
+#master.labels <- masterfile$source
+#master.data <- masterfile[,6:37]
+#library(umap)
+#master.umap <- umap(master.data, low_memory=TRUE)
+
+
+#new masterfile features after spiracle
+#df <- data.frame(x=master.umap$layout[,1], y=master.umap$layout[,2], source=master.labels)
+
+#masterfile_filt <- subset(masterfile, select=-c(allele,bindstatus))
+#masterfile_filt <- distinct(masterfile_filt)
+#rm(masterfile)
+df <- read.csv("/Users/nguyenau/Documents/Coding/Viral_binding_affinity_analysis/austinpc_umap.csv")
+df <- df[,-1]
+df <- data.frame(x=df$V1, y=df$V2, source=df$source)
+ggplot(data=df, aes(x=x, y=y)) + geom_point()
+```
+
+
+```{r matrix bins}
+require(ash)
+matrix_bins <- tibble(x=character(), y=character(), diff=numeric())
+names <- unique(df$source)
+
+for (i in 1:length(names))
+{
+  for (j in 1:length(names))
+  {
+    x <- as.matrix(df[df$source == names[i],1:2])  
+    #x <- matrix( rnorm(200), 100 , 2)
+    ab <- matrix( c(-15,-15,15,15), 2, 2)      
+    nbin <- c( 40, 40)                      # 400 bins #compare binning to umap -> more bins(?)
+    bins <- bin2(x, ab, nbin)
+    bin_sol <- bins$nc
+    sum(bin_sol)
+    dim(x)[1]
+    bin_sol1 <- bin_sol/(dim(x)[1])
+    
+    y <- as.matrix(df[df$source == names[j],1:2])  
+    #x <- matrix( rnorm(200), 100 , 2)
+    bins <- bin2(y, ab, nbin)
+    bin_sol <- bins$nc
+    sum(bin_sol)
+    dim(y)[1]
+    bin_sol2 <- bin_sol/(dim(y)[1])
+    diff_bins <- bin_sol1 - bin_sol2
+    sum_bins <- sum(abs(diff_bins))
+    matrix_bins <- matrix_bins %>% add_row(x=names[i], y=names[j], diff=sum_bins)
+  }
+}
+
+```
+
+```{r}
+library(reshape2)
+matrix_bins <- as.data.frame(matrix_bins)
+colnames(matrix_bins) <- c("Var1", "Var2", "Diff")
+matrix_bins$Diff <- abs(matrix_bins$Diff)
+matrix_bins$Var1 <- gsub("_scores", "", matrix_bins$Var1)
+matrix_bins$Var2 <- gsub("_scores", "", matrix_bins$Var2)
+
+melted_cormat <- melt(cormat)
+diffs <- merge(matrix_bins, melted_cormat, by=c("Var1", "Var2"))
+colnames(diffs)[3] <- "Matrix_diff"
+colnames(diffs)[4] <- "Correlation"
+diffs <- diffs[!diffs$Correlation == 1,]
+cor.test(diffs$Matrix_diff, diffs$Correlation, method="spearman")
+ggplot(diffs, aes(x=Matrix_diff, y=Correlation)) + geom_point() + geom_smooth(method="lm")
+
+```
+
