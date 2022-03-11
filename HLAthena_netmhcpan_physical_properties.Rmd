@@ -551,6 +551,9 @@ matrix_bins_filt$Diff <- abs(matrix_bins_filt$Diff)
 matrix_bins_filt$Var1 <- gsub("_scores", "", matrix_bins_filt$Var1)
 matrix_bins_filt$Var2 <- gsub("_scores", "", matrix_bins_filt$Var2)
 
+cormat <- cor(merged_order_8mers[,-1], method="spearman")
+cormat <- cor(merged_orders[,-1], method="spearman")
+
 melted_cormat <- melt(cormat)
 diffs <- merge(matrix_bins_filt, melted_cormat, by=c("Var1", "Var2"))
 colnames(diffs)[3] <- "Matrix_diff"
