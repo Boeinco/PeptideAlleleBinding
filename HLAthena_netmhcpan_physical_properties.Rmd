@@ -264,14 +264,14 @@ ggplot(data = melted_cormat, aes(Var2, Var1, fill = value))+
 
 ```{r 8mer orders}
 betaherpes_6a_order_8mer <- as.data.frame(table(betaherpes_6a_new_filt_0.5[nchar(betaherpes_6a_new_filt_0.5$Peptide) == 8,]$Allele))
-bk_order_8mer <- as.data.frame(table(bk_new_filt_0.5[nchar(betaherpes_6a_new_filt_0.5$Peptide) == 8,]$Allele))
-cmv_order_8mer <- as.data.frame(table(cmv_hlathena_0.5[nchar(betaherpes_6a_new_filt_0.5$Peptide) == 8,]$Allele))
-covid_order_8mer <- as.data.frame(table(covid_new_filt_0.5[nchar(betaherpes_6a_new_filt_0.5$Peptide) == 8,]$Allele))
-ebv_order_8mer <- as.data.frame(table(ebv_new_filt_0.5[nchar(betaherpes_6a_new_filt_0.5$Peptide) == 8,]$Allele))
-herpes_1_17_order_8mer <- as.data.frame(table(herpes_1_17_new_filt_0.5[nchar(betaherpes_6a_new_filt_0.5$Peptide) == 8,]$Allele))
-herpes_2_hg52_order_8mer <- as.data.frame(table(herpes_2_hg52_new_filt_0.5[nchar(betaherpes_6a_new_filt_0.5$Peptide) == 8,]$Allele))
-human_order_8mer <- as.data.frame(table(human_new_filt_0.5[nchar(betaherpes_6a_new_filt_0.5$Peptide) == 8,]$Allele))
-random_order_8mer <- as.data.frame(table(random_new_filt_0.5[nchar(betaherpes_6a_new_filt_0.5$Peptide) == 8,]$Allele))
+bk_order_8mer <- as.data.frame(table(bk_new_filt_0.5[nchar(bk_new_filt_0.5$Peptide) == 8,]$Allele))
+cmv_order_8mer <- as.data.frame(table(cmv_hlathena_0.5[nchar(cmv_hlathena_0.5$Peptide) == 8,]$Allele))
+covid_order_8mer <- as.data.frame(table(covid_new_filt_0.5[nchar(covid_new_filt_0.5$Peptide) == 8,]$Allele))
+ebv_order_8mer <- as.data.frame(table(ebv_new_filt_0.5[nchar(ebv_new_filt_0.5$Peptide) == 8,]$Allele))
+herpes_1_17_order_8mer <- as.data.frame(table(herpes_1_17_new_filt_0.5[nchar(herpes_1_17_new_filt_0.5$Peptide) == 8,]$Allele))
+herpes_2_hg52_order_8mer <- as.data.frame(table(herpes_2_hg52_new_filt_0.5[nchar(herpes_2_hg52_new_filt_0.5$Peptide) == 8,]$Allele))
+human_order_8mer <- as.data.frame(table(human_new_filt_0.5[nchar(human_new_filt_0.5$pep) == 8,]$Allele))
+random_order_8mer <- as.data.frame(table(random_new_filt_0.5[nchar(random_new_filt_0.5$Peptide) == 8,]$Allele))
 
 colnames(betaherpes_6a_order_8mer)[2] <- "betaherpes_6a"
 colnames(bk_order_8mer)[2] <- "bk"
@@ -326,6 +326,203 @@ ggplot(data = melted_cormat, aes(Var2, Var1, fill = value))+
 
 ```
 
+
+
+```{r 9mer orders}
+betaherpes_6a_order_9mer <- as.data.frame(table(betaherpes_6a_new_filt_0.5[nchar(betaherpes_6a_new_filt_0.5$Peptide) == 9,]$Allele))
+bk_order_9mer <- as.data.frame(table(bk_new_filt_0.5[nchar(bk_new_filt_0.5$Peptide) == 9,]$Allele))
+cmv_order_9mer <- as.data.frame(table(cmv_hlathena_0.5[nchar(cmv_hlathena_0.5$Peptide) == 9,]$Allele))
+covid_order_9mer <- as.data.frame(table(covid_new_filt_0.5[nchar(covid_new_filt_0.5$Peptide) == 9,]$Allele))
+ebv_order_9mer <- as.data.frame(table(ebv_new_filt_0.5[nchar(ebv_new_filt_0.5$Peptide) == 9,]$Allele))
+herpes_1_17_order_9mer <- as.data.frame(table(herpes_1_17_new_filt_0.5[nchar(herpes_1_17_new_filt_0.5$Peptide) == 9,]$Allele))
+herpes_2_hg52_order_9mer <- as.data.frame(table(herpes_2_hg52_new_filt_0.5[nchar(herpes_2_hg52_new_filt_0.5$Peptide) == 9,]$Allele))
+human_order_9mer <- as.data.frame(table(human_new_filt_0.5[nchar(human_new_filt_0.5$pep) == 9,]$Allele))
+random_order_9mer <- as.data.frame(table(random_new_filt_0.5[nchar(random_new_filt_0.5$Peptide) == 9,]$Allele))
+
+colnames(betaherpes_6a_order_9mer)[2] <- "betaherpes_6a"
+colnames(bk_order_9mer)[2] <- "bk"
+colnames(cmv_order_9mer)[2] <- "cmv"
+colnames(covid_order_9mer)[2] <- "covid"
+colnames(ebv_order_9mer)[2] <- "ebv"
+colnames(herpes_1_17_order_9mer)[2] <- "herpes_1_17"
+colnames(herpes_2_hg52_order_9mer)[2] <- "herpes_2_hg52"
+colnames(human_order_9mer)[2] <- "human"
+colnames(random_order_9mer)[2] <- "random"
+
+merged_order_9mers <- merge(betaherpes_6a_order_9mer, bk_order_9mer, by="Var1")
+merged_order_9mers <- merge(merged_order_9mers, cmv_order_9mer, by="Var1")
+merged_order_9mers <- merge(merged_order_9mers, covid_order_9mer, by="Var1")
+merged_order_9mers <- merge(merged_order_9mers, ebv_order_9mer, by="Var1")
+merged_order_9mers <- merge(merged_order_9mers, herpes_1_17_order_9mer, by="Var1")
+merged_order_9mers <- merge(merged_order_9mers, herpes_2_hg52_order_9mer, by="Var1")
+merged_order_9mers <- merge(merged_order_9mers, human_order_9mer, by="Var1")
+merged_order_9mers <- merge(merged_order_9mers, random_order_9mer, by="Var1")
+
+cormat <- cor(merged_order_9mers[,-1], method="spearman")
+
+library(reshape2)
+library(ggplot2)
+#ggplot(data = melted_cormat, aes(x=Var1, y=Var2, fill=value)) + 
+#  geom_tile()
+
+get_lower_tri<-function(cormat){
+  cormat[upper.tri(cormat)] <- NA
+  return(cormat)
+}
+# Get upper triangle of the correlation matrix
+get_upper_tri <- function(cormat){
+  cormat[lower.tri(cormat)]<- NA
+  return(cormat)
+}
+upper_tri <- get_upper_tri(cormat)
+upper_tri
+
+# Melt the correlation matrix
+melted_cormat <- melt(upper_tri, na.rm = TRUE)
+
+ggplot(data = melted_cormat, aes(Var2, Var1, fill = value))+
+  geom_tile(color = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "yellow", 
+                       midpoint = 0.4, limit = c(-0.2,1), space = "Lab", 
+                       name="Spearman\nCorrelation") +
+  theme_minimal()+ 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, 
+                                   size = 5, hjust = 1))+
+  coord_fixed()
+
+```
+
+
+
+```{r 10mer orders}
+betaherpes_6a_order_10mer <- as.data.frame(table(betaherpes_6a_new_filt_0.5[nchar(betaherpes_6a_new_filt_0.5$Peptide) == 10,]$Allele))
+bk_order_10mer <- as.data.frame(table(bk_new_filt_0.5[nchar(bk_new_filt_0.5$Peptide) == 10,]$Allele))
+cmv_order_10mer <- as.data.frame(table(cmv_hlathena_0.5[nchar(cmv_hlathena_0.5$Peptide) == 10,]$Allele))
+covid_order_10mer <- as.data.frame(table(covid_new_filt_0.5[nchar(covid_new_filt_0.5$Peptide) == 10,]$Allele))
+ebv_order_10mer <- as.data.frame(table(ebv_new_filt_0.5[nchar(ebv_new_filt_0.5$Peptide) == 10,]$Allele))
+herpes_1_17_order_10mer <- as.data.frame(table(herpes_1_17_new_filt_0.5[nchar(herpes_1_17_new_filt_0.5$Peptide) == 10,]$Allele))
+herpes_2_hg52_order_10mer <- as.data.frame(table(herpes_2_hg52_new_filt_0.5[nchar(herpes_2_hg52_new_filt_0.5$Peptide) == 10,]$Allele))
+human_order_10mer <- as.data.frame(table(human_new_filt_0.5[nchar(human_new_filt_0.5$pep) == 10,]$Allele))
+random_order_10mer <- as.data.frame(table(random_new_filt_0.5[nchar(random_new_filt_0.5$Peptide) == 10,]$Allele))
+
+colnames(betaherpes_6a_order_10mer)[2] <- "betaherpes_6a"
+colnames(bk_order_10mer)[2] <- "bk"
+colnames(cmv_order_10mer)[2] <- "cmv"
+colnames(covid_order_10mer)[2] <- "covid"
+colnames(ebv_order_10mer)[2] <- "ebv"
+colnames(herpes_1_17_order_10mer)[2] <- "herpes_1_17"
+colnames(herpes_2_hg52_order_10mer)[2] <- "herpes_2_hg52"
+colnames(human_order_10mer)[2] <- "human"
+colnames(random_order_10mer)[2] <- "random"
+
+merged_order_10mers <- merge(betaherpes_6a_order_10mer, bk_order_10mer, by="Var1")
+merged_order_10mers <- merge(merged_order_10mers, cmv_order_10mer, by="Var1")
+merged_order_10mers <- merge(merged_order_10mers, covid_order_10mer, by="Var1")
+merged_order_10mers <- merge(merged_order_10mers, ebv_order_10mer, by="Var1")
+merged_order_10mers <- merge(merged_order_10mers, herpes_1_17_order_10mer, by="Var1")
+merged_order_10mers <- merge(merged_order_10mers, herpes_2_hg52_order_10mer, by="Var1")
+merged_order_10mers <- merge(merged_order_10mers, human_order_10mer, by="Var1")
+merged_order_10mers <- merge(merged_order_10mers, random_order_10mer, by="Var1")
+
+cormat <- cor(merged_order_10mers[,-1], method="spearman")
+
+library(reshape2)
+library(ggplot2)
+#ggplot(data = melted_cormat, aes(x=Var1, y=Var2, fill=value)) + 
+#  geom_tile()
+
+get_lower_tri<-function(cormat){
+  cormat[upper.tri(cormat)] <- NA
+  return(cormat)
+}
+# Get upper triangle of the correlation matrix
+get_upper_tri <- function(cormat){
+  cormat[lower.tri(cormat)]<- NA
+  return(cormat)
+}
+upper_tri <- get_upper_tri(cormat)
+upper_tri
+
+# Melt the correlation matrix
+melted_cormat <- melt(upper_tri, na.rm = TRUE)
+
+ggplot(data = melted_cormat, aes(Var2, Var1, fill = value))+
+  geom_tile(color = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "yellow", 
+                       midpoint = 0.4, limit = c(-0.2,1), space = "Lab", 
+                       name="Spearman\nCorrelation") +
+  theme_minimal()+ 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, 
+                                   size = 5, hjust = 1))+
+  coord_fixed()
+
+```
+
+
+
+```{r 11mer orders}
+betaherpes_6a_order_11mer <- as.data.frame(table(betaherpes_6a_new_filt_0.5[nchar(betaherpes_6a_new_filt_0.5$Peptide) == 11,]$Allele))
+bk_order_11mer <- as.data.frame(table(bk_new_filt_0.5[nchar(bk_new_filt_0.5$Peptide) == 11,]$Allele))
+cmv_order_11mer <- as.data.frame(table(cmv_hlathena_0.5[nchar(cmv_hlathena_0.5$Peptide) == 11,]$Allele))
+covid_order_11mer <- as.data.frame(table(covid_new_filt_0.5[nchar(covid_new_filt_0.5$Peptide) == 11,]$Allele))
+ebv_order_11mer <- as.data.frame(table(ebv_new_filt_0.5[nchar(ebv_new_filt_0.5$Peptide) == 11,]$Allele))
+herpes_1_17_order_11mer <- as.data.frame(table(herpes_1_17_new_filt_0.5[nchar(herpes_1_17_new_filt_0.5$Peptide) == 11,]$Allele))
+herpes_2_hg52_order_11mer <- as.data.frame(table(herpes_2_hg52_new_filt_0.5[nchar(herpes_2_hg52_new_filt_0.5$Peptide) == 11,]$Allele))
+human_order_11mer <- as.data.frame(table(human_new_filt_0.5[nchar(human_new_filt_0.5$pep) == 11,]$Allele))
+random_order_11mer <- as.data.frame(table(random_new_filt_0.5[nchar(random_new_filt_0.5$Peptide) == 11,]$Allele))
+
+colnames(betaherpes_6a_order_11mer)[2] <- "betaherpes_6a"
+colnames(bk_order_11mer)[2] <- "bk"
+colnames(cmv_order_11mer)[2] <- "cmv"
+colnames(covid_order_11mer)[2] <- "covid"
+colnames(ebv_order_11mer)[2] <- "ebv"
+colnames(herpes_1_17_order_11mer)[2] <- "herpes_1_17"
+colnames(herpes_2_hg52_order_11mer)[2] <- "herpes_2_hg52"
+colnames(human_order_11mer)[2] <- "human"
+colnames(random_order_11mer)[2] <- "random"
+
+merged_order_11mers <- merge(betaherpes_6a_order_11mer, bk_order_11mer, by="Var1")
+merged_order_11mers <- merge(merged_order_11mers, cmv_order_11mer, by="Var1")
+merged_order_11mers <- merge(merged_order_11mers, covid_order_11mer, by="Var1")
+merged_order_11mers <- merge(merged_order_11mers, ebv_order_11mer, by="Var1")
+merged_order_11mers <- merge(merged_order_11mers, herpes_1_17_order_11mer, by="Var1")
+merged_order_11mers <- merge(merged_order_11mers, herpes_2_hg52_order_11mer, by="Var1")
+merged_order_11mers <- merge(merged_order_11mers, human_order_11mer, by="Var1")
+merged_order_11mers <- merge(merged_order_11mers, random_order_11mer, by="Var1")
+
+cormat <- cor(merged_order_11mers[,-1], method="spearman")
+
+library(reshape2)
+library(ggplot2)
+#ggplot(data = melted_cormat, aes(x=Var1, y=Var2, fill=value)) + 
+#  geom_tile()
+
+get_lower_tri<-function(cormat){
+  cormat[upper.tri(cormat)] <- NA
+  return(cormat)
+}
+# Get upper triangle of the correlation matrix
+get_upper_tri <- function(cormat){
+  cormat[lower.tri(cormat)]<- NA
+  return(cormat)
+}
+upper_tri <- get_upper_tri(cormat)
+upper_tri
+
+# Melt the correlation matrix
+melted_cormat <- melt(upper_tri, na.rm = TRUE)
+
+ggplot(data = melted_cormat, aes(Var2, Var1, fill = value))+
+  geom_tile(color = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "yellow", 
+                       midpoint = 0.4, limit = c(-0.2,1), space = "Lab", 
+                       name="Spearman\nCorrelation") +
+  theme_minimal()+ 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, 
+                                   size = 5, hjust = 1))+
+  coord_fixed()
+
+```
 
 ```{r hlathenaranks}
 hlathena_ranks <- merged_orders
