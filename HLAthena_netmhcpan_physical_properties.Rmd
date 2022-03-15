@@ -524,6 +524,65 @@ ggplot(data = melted_cormat, aes(Var2, Var1, fill = value))+
 
 ```
 
+```{r save kmers}
+kmers8 <- tibble(Pep=character(), Source=character(), Score=numeric())
+kmers8 <- kmers8 %>% add_row(Pep=betaherpes_6a_new_filt[nchar(betaherpes_6a_new_filt$Peptide) == 8,]$Peptide, Source="betaherpes_6a", Score=betaherpes_6a_new_filt[nchar(betaherpes_6a_new_filt$Peptide) == 8,]$Score)
+kmers8 <- kmers8 %>% add_row(Pep=bk_new_filt[nchar(bk_new_filt$Peptide) == 8,]$Peptide, Source="bk", Score=bk_new_filt[nchar(bk_new_filt$Peptide) == 8,]$Score)
+kmers8 <- kmers8 %>% add_row(Pep=cmv_hlathena[nchar(cmv_hlathena$Peptide) == 8,]$Peptide, Source="cmv", Score=cmv_hlathena[nchar(cmv_hlathena$Peptide) == 8,]$Score)
+kmers8 <- kmers8 %>% add_row(Pep=covid_new_filt[nchar(covid_new_filt$Peptide) == 8,]$Peptide, Source="covid", Score=covid_new_filt[nchar(covid_new_filt$Peptide) == 8,]$Score)
+kmers8 <- kmers8 %>% add_row(Pep=ebv_new_filt[nchar(ebv_new_filt$Peptide) == 8,]$Peptide, Source="ebv", Score=ebv_new_filt[nchar(ebv_new_filt$Peptide) == 8,]$Score)
+kmers8 <- kmers8 %>% add_row(Pep=herpes_1_17_new_filt[nchar(herpes_1_17_new_filt$Peptide) == 8,]$Peptide, Source="herpes_1_17", Score=herpes_1_17_new_filt[nchar(herpes_1_17_new_filt$Peptide) == 8,]$Score)
+kmers8 <- kmers8 %>% add_row(Pep=herpes_2_hg52_new_filt[nchar(herpes_2_hg52_new_filt$Peptide) == 8,]$Peptide, Source="herpes_2_hg52", Score=herpes_2_hg52_new_filt[nchar(herpes_2_hg52_new_filt$Peptide) == 8,]$Score)
+kmers8 <- kmers8 %>% add_row(Pep=human_new_filt[nchar(human_new_filt$Peptide) == 8,]$Peptide, Source="human", Score=human_new_filt[nchar(human_new_filt$Peptide) == 8,]$Score)
+kmers8 <- kmers8 %>% add_row(Pep=random_new_filt[nchar(random_new_filt$Peptide) == 8,]$Peptide, Source="random", Score=random_new_filt[nchar(random_new_filt$Peptide) == 8,]$Score)
+
+
+kmers9 <- tibble(Pep=character(), Source=character(), Score=numeric())
+kmers9 <- kmers9 %>% add_row(Pep=betaherpes_6a_new_filt[nchar(betaherpes_6a_new_filt$Peptide) == 9,]$Peptide, Source="betaherpes_6a", Score=betaherpes_6a_new_filt[nchar(betaherpes_6a_new_filt$Peptide) == 9,]$Score)
+kmers9 <- kmers9 %>% add_row(Pep=bk_new_filt[nchar(bk_new_filt$Peptide) == 9,]$Peptide, Source="bk", Score=bk_new_filt[nchar(bk_new_filt$Peptide) == 9,]$Score)
+kmers9 <- kmers9 %>% add_row(Pep=cmv_hlathena[nchar(cmv_hlathena$Peptide) == 9,]$Peptide, Source="cmv", Score=cmv_hlathena[nchar(cmv_hlathena$Peptide) == 9,]$Score)
+kmers9 <- kmers9 %>% add_row(Pep=covid_new_filt[nchar(covid_new_filt$Peptide) == 9,]$Peptide, Source="covid", Score=covid_new_filt[nchar(covid_new_filt$Peptide) == 9,]$Score)
+kmers9 <- kmers9 %>% add_row(Pep=ebv_new_filt[nchar(ebv_new_filt$Peptide) == 9,]$Peptide, Source="ebv", Score=ebv_new_filt[nchar(ebv_new_filt$Peptide) == 9,]$Score)
+kmers9 <- kmers9 %>% add_row(Pep=herpes_1_17_new_filt[nchar(herpes_1_17_new_filt$Peptide) == 9,]$Peptide, Source="herpes_1_17", Score=herpes_1_17_new_filt[nchar(herpes_1_17_new_filt$Peptide) == 9,]$Score)
+kmers9 <- kmers9 %>% add_row(Pep=herpes_2_hg52_new_filt[nchar(herpes_2_hg52_new_filt$Peptide) == 9,]$Peptide, Source="herpes_2_hg52", Score=herpes_2_hg52_new_filt[nchar(herpes_2_hg52_new_filt$Peptide) == 9,]$Score)
+kmers9 <- kmers9 %>% add_row(Pep=human_new_filt[nchar(human_new_filt$Peptide) == 9,]$Peptide, Source="human", Score=human_new_filt[nchar(human_new_filt$Peptide) == 9,]$Score)
+kmers9 <- kmers9 %>% add_row(Pep=random_new_filt[nchar(random_new_filt$Peptide) == 9,]$Peptide, Source="random", Score=random_new_filt[nchar(random_new_filt$Peptide) == 9,]$Score)
+
+
+kmers10 <- tibble(Pep=character(), Source=character(), Score=numeric())
+kmers10 <- kmers10 %>% add_row(Pep=betaherpes_6a_new_filt[nchar(betaherpes_6a_new_filt$Peptide) == 10,]$Peptide, Source="betaherpes_6a", Score=betaherpes_6a_new_filt[nchar(betaherpes_6a_new_filt$Peptide) == 10,]$Score)
+kmers10 <- kmers10 %>% add_row(Pep=bk_new_filt[nchar(bk_new_filt$Peptide) == 10,]$Peptide, Source="bk", Score=bk_new_filt[nchar(bk_new_filt$Peptide) == 10,]$Score)
+kmers10 <- kmers10 %>% add_row(Pep=cmv_hlathena[nchar(cmv_hlathena$Peptide) == 10,]$Peptide, Source="cmv", Score=cmv_hlathena[nchar(cmv_hlathena$Peptide) == 10,]$Score)
+kmers10 <- kmers10 %>% add_row(Pep=covid_new_filt[nchar(covid_new_filt$Peptide) == 10,]$Peptide, Source="covid", Score=covid_new_filt[nchar(covid_new_filt$Peptide) == 10,]$Score)
+kmers10 <- kmers10 %>% add_row(Pep=ebv_new_filt[nchar(ebv_new_filt$Peptide) == 10,]$Peptide, Source="ebv", Score=ebv_new_filt[nchar(ebv_new_filt$Peptide) == 10,]$Score)
+kmers10 <- kmers10 %>% add_row(Pep=herpes_1_17_new_filt[nchar(herpes_1_17_new_filt$Peptide) == 10,]$Peptide, Source="herpes_1_17", Score=herpes_1_17_new_filt[nchar(herpes_1_17_new_filt$Peptide) == 10,]$Score)
+kmers10 <- kmers10 %>% add_row(Pep=herpes_2_hg52_new_filt[nchar(herpes_2_hg52_new_filt$Peptide) == 10,]$Peptide, Source="herpes_2_hg52", Score=herpes_2_hg52_new_filt[nchar(herpes_2_hg52_new_filt$Peptide) == 10,]$Score)
+kmers10 <- kmers10 %>% add_row(Pep=human_new_filt[nchar(human_new_filt$Peptide) == 10,]$Peptide, Source="human", Score=human_new_filt[nchar(human_new_filt$Peptide) == 10,]$Score)
+kmers10 <- kmers10 %>% add_row(Pep=random_new_filt[nchar(random_new_filt$Peptide) == 10,]$Peptide, Source="random", Score=random_new_filt[nchar(random_new_filt$Peptide) == 10,]$Score)
+
+
+kmers11 <- tibble(Pep=character(), Source=character(), Score=numeric())
+kmers11 <- kmers11 %>% add_row(Pep=betaherpes_6a_new_filt[nchar(betaherpes_6a_new_filt$Peptide) == 11,]$Peptide, Source="betaherpes_6a", Score=betaherpes_6a_new_filt[nchar(betaherpes_6a_new_filt$Peptide) == 11,]$Score)
+kmers11 <- kmers11 %>% add_row(Pep=bk_new_filt[nchar(bk_new_filt$Peptide) == 11,]$Peptide, Source="bk", Score=bk_new_filt[nchar(bk_new_filt$Peptide) == 11,]$Score)
+kmers11 <- kmers11 %>% add_row(Pep=cmv_hlathena[nchar(cmv_hlathena$Peptide) == 11,]$Peptide, Source="cmv", Score=cmv_hlathena[nchar(cmv_hlathena$Peptide) == 11,]$Score)
+kmers11 <- kmers11 %>% add_row(Pep=covid_new_filt[nchar(covid_new_filt$Peptide) == 11,]$Peptide, Source="covid", Score=covid_new_filt[nchar(covid_new_filt$Peptide) == 11,]$Score)
+kmers11 <- kmers11 %>% add_row(Pep=ebv_new_filt[nchar(ebv_new_filt$Peptide) == 11,]$Peptide, Source="ebv", Score=ebv_new_filt[nchar(ebv_new_filt$Peptide) == 11,]$Score)
+kmers11 <- kmers11 %>% add_row(Pep=herpes_1_17_new_filt[nchar(herpes_1_17_new_filt$Peptide) == 11,]$Peptide, Source="herpes_1_17", Score=herpes_1_17_new_filt[nchar(herpes_1_17_new_filt$Peptide) == 11,]$Score)
+kmers11 <- kmers11 %>% add_row(Pep=herpes_2_hg52_new_filt[nchar(herpes_2_hg52_new_filt$Peptide) == 11,]$Peptide, Source="herpes_2_hg52", Score=herpes_2_hg52_new_filt[nchar(herpes_2_hg52_new_filt$Peptide) == 11,]$Score)
+kmers11 <- kmers11 %>% add_row(Pep=human_new_filt[nchar(human_new_filt$Peptide) == 11,]$Peptide, Source="human", Score=human_new_filt[nchar(human_new_filt$Peptide) == 11,]$Score)
+kmers11 <- kmers11 %>% add_row(Pep=random_new_filt[nchar(random_new_filt$Peptide) == 11,]$Peptide, Source="random", Score=random_new_filt[nchar(random_new_filt$Peptide) == 11,]$Score)
+
+
+write.csv(kmers8, "8mers_all_sources.csv")
+write.csv(kmers9, "9mers_all_sources.csv")
+write.csv(kmers10, "10mers_all_sources.csv")
+write.csv(kmers11, "11mers_all_sources.csv")
+
+
+```
+
+
+
 ```{r hlathenaranks}
 hlathena_ranks <- merged_orders
 hlathena_ranks[2] <- frank(-merged_orders[2])
