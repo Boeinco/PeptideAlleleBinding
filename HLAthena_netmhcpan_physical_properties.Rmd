@@ -573,11 +573,19 @@ kmers11 <- kmers11 %>% add_row(Pep=human_new_filt[nchar(human_new_filt$Peptide) 
 kmers11 <- kmers11 %>% add_row(Pep=random_new_filt[nchar(random_new_filt$Peptide) == 11,]$Peptide, Source="random", Score=random_new_filt[nchar(random_new_filt$Peptide) == 11,]$Score)
 
 
-write.csv(kmers8, "8mers_all_sources.csv")
-write.csv(kmers9, "9mers_all_sources.csv")
-write.csv(kmers10, "10mers_all_sources.csv")
-write.csv(kmers11, "11mers_all_sources.csv")
+write.table(kmers8, "8mers_all_sources.csv", row.names = FALSE, quote = FALSE, col.names=FALSE, sep=",")
+write.table(kmers9, "9mers_all_sources.csv", row.names = FALSE, quote = FALSE, col.names = FALSE, sep=",")
+write.table(kmers10, "10mers_all_sources.csv", row.names = FALSE, quote = FALSE, col.names =FALSE, sep=",")
+write.table(kmers11, "11mers_all_sources.csv", row.names = FALSE, quote = FALSE, col.names =FALSE, sep=",")
 
+##awk -F, '{print $1}' 8mers_all_sources.csv > 8mers_peps.csv
+##awk -F, '{print $1}' 9mers_all_sources.csv > 9mers_peps.csv
+##awk -F, '{print $1}' 10mers_all_sources.csv > 10mers_peps.csv
+##awk -F, '{print $1}' 10mers_all_sources.csv > 11mers_peps.csv
+##python3 initial_umap.py 8mers_peps.csv 8mers_properties.csv
+##python3 initial_umap.py 9mers_peps.csv 9mers_properties.csv
+##python3 initial_umap.py 10mers_peps.csv 10mers_properties.csv
+##python3 initial_umap.py 11mers_peps.csv 11mers_properties.csv
 
 ```
 
