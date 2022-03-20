@@ -589,6 +589,12 @@ write.table(kmers11, "11mers_all_sources.csv", row.names = FALSE, quote = FALSE,
 
 ```
 
+```{r merge files for kmers}
+
+
+```
+
+
 
 
 ```{r hlathenaranks}
