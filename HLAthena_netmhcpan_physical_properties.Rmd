@@ -589,11 +589,141 @@ write.table(kmers11, "11mers_all_sources.csv", row.names = FALSE, quote = FALSE,
 
 ```
 
-```{r merge files for kmers}
+```{r merge files for 8mers}
+map8_peps <- read.csv("8mer_pep_umap.csv", header=FALSE)
+colnames(map8_peps) <- c("Peptide", "X", "Y")
+merged_peps_umap8 <- merge(map8_peps, betaherpes_6a_new_filt, by="Peptide")
+merged_peps_umap8$Source <- "betaherpes_6a"
+temp <- merge(map8_peps, bk_new_filt, by="Peptide")
+temp$Source <- "bk"
+merged_peps_umap8 <- rbind(merged_peps_umap8, temp)
+temp <- merge(map8_peps, cmv_hlathena, by="Peptide")
+temp$Source <- "cmv"
+merged_peps_umap8 <- rbind(merged_peps_umap8, temp)
+temp <- merge(map8_peps, covid_new_filt, by="Peptide")
+temp$Source <- "covid"
+merged_peps_umap8 <- rbind(merged_peps_umap8, temp)
+temp <- merge(map8_peps, ebv_new_filt, by="Peptide")
+temp$Source <- "ebv"
+merged_peps_umap8 <- rbind(merged_peps_umap8, temp)
+temp <- merge(map8_peps, herpes_1_17_new_filt, by="Peptide")
+temp$Source <- "herpes_1_17"
+merged_peps_umap8 <- rbind(merged_peps_umap8, temp)
+temp <- merge(map8_peps, herpes_2_hg52_new_filt, by="Peptide")
+temp$Source <- "herpes_2_hg52"
+merged_peps_umap8 <- rbind(merged_peps_umap8, temp)
+colnames(human_new_filt)[1] <- "Peptide"
+temp <- merge(map8_peps, human_new_filt, by="Peptide")
+temp$Source <- "human"
+merged_peps_umap8 <- rbind(merged_peps_umap8, temp)
+temp <- merge(map8_peps, random_new_filt, by="Peptide")
+temp$Source <- "random"
+merged_peps_umap8 <- rbind(merged_peps_umap8, temp)
 
-
+write.table(merged_peps_umap8, "merged_peps_umap8mer.csv", row.names=FALSE, quote=FALSE, sep=',')
 ```
 
+```{r merge files for 9mers}
+map9_peps <- read.csv("9mer_pep_umap.csv", header=FALSE)
+colnames(map9_peps) <- c("Peptide", "X", "Y")
+merged_peps_umap9 <- merge(map9_peps, betaherpes_6a_new_filt, by="Peptide")
+merged_peps_umap9$Source <- "betaherpes_6a"
+temp <- merge(map9_peps, bk_new_filt, by="Peptide")
+temp$Source <- "bk"
+merged_peps_umap9 <- rbind(merged_peps_umap9, temp)
+temp <- merge(map9_peps, cmv_hlathena, by="Peptide")
+temp$Source <- "cmv"
+merged_peps_umap9 <- rbind(merged_peps_umap9, temp)
+temp <- merge(map9_peps, covid_new_filt, by="Peptide")
+temp$Source <- "covid"
+merged_peps_umap9 <- rbind(merged_peps_umap9, temp)
+temp <- merge(map9_peps, ebv_new_filt, by="Peptide")
+temp$Source <- "ebv"
+merged_peps_umap9 <- rbind(merged_peps_umap9, temp)
+temp <- merge(map9_peps, herpes_1_17_new_filt, by="Peptide")
+temp$Source <- "herpes_1_17"
+merged_peps_umap9 <- rbind(merged_peps_umap9, temp)
+temp <- merge(map9_peps, herpes_2_hg52_new_filt, by="Peptide")
+temp$Source <- "herpes_2_hg52"
+merged_peps_umap9 <- rbind(merged_peps_umap9, temp)
+colnames(human_new_filt)[1] <- "Peptide"
+temp <- merge(map9_peps, human_new_filt, by="Peptide")
+temp$Source <- "human"
+merged_peps_umap9 <- rbind(merged_peps_umap9, temp)
+temp <- merge(map9_peps, random_new_filt, by="Peptide")
+temp$Source <- "random"
+merged_peps_umap9 <- rbind(merged_peps_umap9, temp)
+
+write.table(merged_peps_umap9, "merged_peps_umap9mer.csv", row.names=FALSE, quote=FALSE, sep=',')
+```
+
+```{r merge files for 10mers}
+map10_peps <- read.csv("10mer_pep_umap.csv", header=FALSE)
+colnames(map10_peps) <- c("Peptide", "X", "Y")
+merged_peps_umap10 <- merge(map10_peps, betaherpes_6a_new_filt, by="Peptide")
+merged_peps_umap10$Source <- "betaherpes_6a"
+temp <- merge(map10_peps, bk_new_filt, by="Peptide")
+temp$Source <- "bk"
+merged_peps_umap10 <- rbind(merged_peps_umap10, temp)
+temp <- merge(map10_peps, cmv_hlathena, by="Peptide")
+temp$Source <- "cmv"
+merged_peps_umap10 <- rbind(merged_peps_umap10, temp)
+temp <- merge(map10_peps, covid_new_filt, by="Peptide")
+temp$Source <- "covid"
+merged_peps_umap10 <- rbind(merged_peps_umap10, temp)
+temp <- merge(map10_peps, ebv_new_filt, by="Peptide")
+temp$Source <- "ebv"
+merged_peps_umap10 <- rbind(merged_peps_umap10, temp)
+temp <- merge(map10_peps, herpes_1_17_new_filt, by="Peptide")
+temp$Source <- "herpes_1_17"
+merged_peps_umap10 <- rbind(merged_peps_umap10, temp)
+temp <- merge(map10_peps, herpes_2_hg52_new_filt, by="Peptide")
+temp$Source <- "herpes_2_hg52"
+merged_peps_umap10 <- rbind(merged_peps_umap10, temp)
+colnames(human_new_filt)[1] <- "Peptide"
+temp <- merge(map10_peps, human_new_filt, by="Peptide")
+temp$Source <- "human"
+merged_peps_umap10 <- rbind(merged_peps_umap10, temp)
+temp <- merge(map10_peps, random_new_filt, by="Peptide")
+temp$Source <- "random"
+merged_peps_umap10 <- rbind(merged_peps_umap10, temp)
+
+write.table(merged_peps_umap10, "merged_peps_umap10mer.csv", row.names=FALSE, quote=FALSE, sep=',')
+```
+
+```{r merge files for 11mers}
+map11_peps <- read.csv("11mer_pep_umap.csv", header=FALSE)
+colnames(map11_peps) <- c("Peptide", "X", "Y")
+merged_peps_umap11 <- merge(map11_peps, betaherpes_6a_new_filt, by="Peptide")
+merged_peps_umap11$Source <- "betaherpes_6a"
+temp <- merge(map11_peps, bk_new_filt, by="Peptide")
+temp$Source <- "bk"
+merged_peps_umap11 <- rbind(merged_peps_umap11, temp)
+temp <- merge(map11_peps, cmv_hlathena, by="Peptide")
+temp$Source <- "cmv"
+merged_peps_umap11 <- rbind(merged_peps_umap11, temp)
+temp <- merge(map11_peps, covid_new_filt, by="Peptide")
+temp$Source <- "covid"
+merged_peps_umap11 <- rbind(merged_peps_umap11, temp)
+temp <- merge(map11_peps, ebv_new_filt, by="Peptide")
+temp$Source <- "ebv"
+merged_peps_umap11 <- rbind(merged_peps_umap11, temp)
+temp <- merge(map11_peps, herpes_1_17_new_filt, by="Peptide")
+temp$Source <- "herpes_1_17"
+merged_peps_umap11 <- rbind(merged_peps_umap11, temp)
+temp <- merge(map11_peps, herpes_2_hg52_new_filt, by="Peptide")
+temp$Source <- "herpes_2_hg52"
+merged_peps_umap11 <- rbind(merged_peps_umap11, temp)
+colnames(human_new_filt)[1] <- "Peptide"
+temp <- merge(map11_peps, human_new_filt, by="Peptide")
+temp$Source <- "human"
+merged_peps_umap11 <- rbind(merged_peps_umap11, temp)
+temp <- merge(map11_peps, random_new_filt, by="Peptide")
+temp$Source <- "random"
+merged_peps_umap11 <- rbind(merged_peps_umap11, temp)
+
+write.table(merged_peps_umap11, "merged_peps_umap11mer.csv", row.names=FALSE, quote=FALSE, sep=',')
+```
 
 
 
@@ -686,13 +816,13 @@ ggplot(data = melted_cormat, aes(Var2, Var1, fill = value))+
 #masterfile_filt <- subset(masterfile, select=-c(allele,bindstatus))
 #masterfile_filt <- distinct(masterfile_filt)
 #rm(masterfile)
-df <- read.csv("/Users/nguyenau/Documents/Coding/Viral_binding_affinity_analysis/austinpc_umap.csv")
-df <- df[,-1]
-df <- data.frame(x=df$V1, y=df$V2, source=df$source)
-ggplot(data=df, aes(x=x, y=y)) + geom_point(aes(color=source))
+#df <- read.csv("/Users/nguyenau/Documents/Coding/Viral_binding_affinity_analysis/austinpc_umap.csv")
+#df <- df[,-1]
+#df <- data.frame(x=df$V1, y=df$V2, source=df$source)
+#ggplot(data=df, aes(x=x, y=y)) + geom_point(aes(color=source))
 
 library(GGally)
-names <- unique(df$source)
+names <- unique(merged_peps_umap8$Source)
 plot_list = list()
 count <- 1
 for (i in 1:length(names))
@@ -721,16 +851,16 @@ pdf("PDFgrid_peptide_pairs.pdf")
 ```
 
 
-```{r matrix bins}
+```{r 8mer matrix bins}
 require(ash)
 matrix_bins <- tibble(x=character(), y=character(), diff=numeric())
-names <- unique(df$source)
+names <- unique(merged_peps_umap8$Source)
 
 for (i in 1:length(names))
 {
   for (j in 1:length(names))
   {
-    x <- as.matrix(df[df$source == names[i],1:2])  
+    x <- as.matrix(unique(merged_peps_umap8[merged_peps_umap8$Source == names[i],2:3]))
     #x <- matrix( rnorm(200), 100 , 2)
     ab <- matrix( c(-15,-15,15,15), 2, 2)      
     nbin <- c( 40, 40)                      # 1600 bins #compare binning to umap -> more bins(?)
@@ -740,7 +870,7 @@ for (i in 1:length(names))
     dim(x)[1]
     bin_sol1 <- bin_sol/(dim(x)[1])
     
-    y <- as.matrix(df[df$source == names[j],1:2])  
+    y <- as.matrix(unique(merged_peps_umap8[merged_peps_umap8$Source == names[j],2:3]))
     #x <- matrix( rnorm(200), 100 , 2)
     bins <- bin2(y, ab, nbin)
     bin_sol <- bins$nc
@@ -753,7 +883,170 @@ for (i in 1:length(names))
   }
 }
 
+library(reshape2)
+matrix_bins <- as.data.frame(matrix_bins)
+colnames(matrix_bins) <- c("Var1", "Var2", "Diff")
+matrix_bins$Diff <- abs(matrix_bins$Diff)
+matrix_bins$Var1 <- gsub("_scores", "", matrix_bins$Var1)
+matrix_bins$Var2 <- gsub("_scores", "", matrix_bins$Var2)
+
+cormat <- cor(merged_order_8mers[,-1], method="spearman")
+melted_cormat <- melt(cormat)
+diffs <- merge(matrix_bins, melted_cormat, by=c("Var1", "Var2"))
+colnames(diffs)[3] <- "Matrix_diff"
+colnames(diffs)[4] <- "Correlation"
+diffs <- diffs[!diffs$Correlation == 1,]
+cor.test(diffs$Matrix_diff, diffs$Correlation, method="spearman")
+ggplot(diffs, aes(x=Matrix_diff, y=Correlation)) + geom_point() + geom_smooth(method="lm") + ggtitle("Matrix diff of binders (HLATHENA) vs Cor coefficient")
 ```
+
+```{r 9mer matrix bins}
+require(ash)
+matrix_bins <- tibble(x=character(), y=character(), diff=numeric())
+names <- unique(merged_peps_umap9$Source)
+
+for (i in 1:length(names))
+{
+  for (j in 1:length(names))
+  {
+    x <- as.matrix(unique(merged_peps_umap9[merged_peps_umap9$Source == names[i],2:3]))
+    #x <- matrix( rnorm(200), 100 , 2)
+    ab <- matrix( c(-15,-15,15,15), 2, 2)      
+    nbin <- c( 40, 40)                      # 1600 bins #compare binning to umap -> more bins(?)
+    bins <- bin2(x, ab, nbin)
+    bin_sol <- bins$nc
+    sum(bin_sol)
+    dim(x)[1]
+    bin_sol1 <- bin_sol/(dim(x)[1])
+    
+    y <- as.matrix(unique(merged_peps_umap9[merged_peps_umap9$Source == names[j],2:3]))
+    #x <- matrix( rnorm(200), 100 , 2)
+    bins <- bin2(y, ab, nbin)
+    bin_sol <- bins$nc
+    sum(bin_sol)
+    dim(y)[1]
+    bin_sol2 <- bin_sol/(dim(y)[1])
+    diff_bins <- bin_sol1 - bin_sol2
+    sum_bins <- sum(abs(diff_bins))
+    matrix_bins <- matrix_bins %>% add_row(x=names[i], y=names[j], diff=sum_bins)
+  }
+}
+
+library(reshape2)
+matrix_bins <- as.data.frame(matrix_bins)
+colnames(matrix_bins) <- c("Var1", "Var2", "Diff")
+matrix_bins$Diff <- abs(matrix_bins$Diff)
+matrix_bins$Var1 <- gsub("_scores", "", matrix_bins$Var1)
+matrix_bins$Var2 <- gsub("_scores", "", matrix_bins$Var2)
+
+cormat <- cor(merged_order_9mers[,-1], method="spearman")
+melted_cormat <- melt(cormat)
+diffs <- merge(matrix_bins, melted_cormat, by=c("Var1", "Var2"))
+colnames(diffs)[3] <- "Matrix_diff"
+colnames(diffs)[4] <- "Correlation"
+diffs <- diffs[!diffs$Correlation == 1,]
+cor.test(diffs$Matrix_diff, diffs$Correlation, method="spearman")
+ggplot(diffs, aes(x=Matrix_diff, y=Correlation)) + geom_point() + geom_smooth(method="lm") + ggtitle("Matrix diff of binders (HLATHENA) vs Cor coefficient")
+```
+
+```{r 10mer matrix bins}
+require(ash)
+matrix_bins <- tibble(x=character(), y=character(), diff=numeric())
+names <- unique(merged_peps_umap10$Source)
+
+for (i in 1:length(names))
+{
+  for (j in 1:length(names))
+  {
+    x <- as.matrix(unique(merged_peps_umap10[merged_peps_umap10$Source == names[i],2:3]))
+    #x <- matrix( rnorm(200), 100 , 2)
+    ab <- matrix( c(-15,-15,15,15), 2, 2)      
+    nbin <- c( 40, 40)                      # 1600 bins #compare binning to umap -> more bins(?)
+    bins <- bin2(x, ab, nbin)
+    bin_sol <- bins$nc
+    sum(bin_sol)
+    dim(x)[1]
+    bin_sol1 <- bin_sol/(dim(x)[1])
+    
+    y <- as.matrix(unique(merged_peps_umap10[merged_peps_umap10$Source == names[j],2:3]))
+    #x <- matrix( rnorm(200), 100 , 2)
+    bins <- bin2(y, ab, nbin)
+    bin_sol <- bins$nc
+    sum(bin_sol)
+    dim(y)[1]
+    bin_sol2 <- bin_sol/(dim(y)[1])
+    diff_bins <- bin_sol1 - bin_sol2
+    sum_bins <- sum(abs(diff_bins))
+    matrix_bins <- matrix_bins %>% add_row(x=names[i], y=names[j], diff=sum_bins)
+  }
+}
+
+library(reshape2)
+matrix_bins <- as.data.frame(matrix_bins)
+colnames(matrix_bins) <- c("Var1", "Var2", "Diff")
+matrix_bins$Diff <- abs(matrix_bins$Diff)
+matrix_bins$Var1 <- gsub("_scores", "", matrix_bins$Var1)
+matrix_bins$Var2 <- gsub("_scores", "", matrix_bins$Var2)
+
+cormat <- cor(merged_order_10mers[,-1], method="spearman")
+melted_cormat <- melt(cormat)
+diffs <- merge(matrix_bins, melted_cormat, by=c("Var1", "Var2"))
+colnames(diffs)[3] <- "Matrix_diff"
+colnames(diffs)[4] <- "Correlation"
+diffs <- diffs[!diffs$Correlation == 1,]
+cor.test(diffs$Matrix_diff, diffs$Correlation, method="spearman")
+ggplot(diffs, aes(x=Matrix_diff, y=Correlation)) + geom_point() + geom_smooth(method="lm") + ggtitle("Matrix diff of binders (HLATHENA) vs Cor coefficient")
+```
+
+```{r 11mer matrix bins}
+require(ash)
+matrix_bins <- tibble(x=character(), y=character(), diff=numeric())
+names <- unique(merged_peps_umap11$Source)
+
+for (i in 1:length(names))
+{
+  for (j in 1:length(names))
+  {
+    x <- as.matrix(unique(merged_peps_umap11[merged_peps_umap11$Source == names[i],2:3]))
+    #x <- matrix( rnorm(200), 100 , 2)
+    ab <- matrix( c(-15,-15,15,15), 2, 2)      
+    nbin <- c( 40, 40)                      # 1600 bins #compare binning to umap -> more bins(?)
+    bins <- bin2(x, ab, nbin)
+    bin_sol <- bins$nc
+    sum(bin_sol)
+    dim(x)[1]
+    bin_sol1 <- bin_sol/(dim(x)[1])
+    
+    y <- as.matrix(unique(merged_peps_umap11[merged_peps_umap11$Source == names[j],2:3]))
+    #x <- matrix( rnorm(200), 100 , 2)
+    bins <- bin2(y, ab, nbin)
+    bin_sol <- bins$nc
+    sum(bin_sol)
+    dim(y)[1]
+    bin_sol2 <- bin_sol/(dim(y)[1])
+    diff_bins <- bin_sol1 - bin_sol2
+    sum_bins <- sum(abs(diff_bins))
+    matrix_bins <- matrix_bins %>% add_row(x=names[i], y=names[j], diff=sum_bins)
+  }
+}
+
+library(reshape2)
+matrix_bins <- as.data.frame(matrix_bins)
+colnames(matrix_bins) <- c("Var1", "Var2", "Diff")
+matrix_bins$Diff <- abs(matrix_bins$Diff)
+matrix_bins$Var1 <- gsub("_scores", "", matrix_bins$Var1)
+matrix_bins$Var2 <- gsub("_scores", "", matrix_bins$Var2)
+
+cormat <- cor(merged_order_11mers[,-1], method="spearman")
+melted_cormat <- melt(cormat)
+diffs <- merge(matrix_bins, melted_cormat, by=c("Var1", "Var2"))
+colnames(diffs)[3] <- "Matrix_diff"
+colnames(diffs)[4] <- "Correlation"
+diffs <- diffs[!diffs$Correlation == 1,]
+cor.test(diffs$Matrix_diff, diffs$Correlation, method="spearman")
+ggplot(diffs, aes(x=Matrix_diff, y=Correlation)) + geom_point() + geom_smooth(method="lm") + ggtitle("Matrix diff of binders (HLATHENA) vs Cor coefficient")
+```
+
 
 ```{r}
 library(reshape2)
