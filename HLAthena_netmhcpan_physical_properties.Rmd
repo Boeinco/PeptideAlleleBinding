@@ -27,7 +27,7 @@ cmv_new$Allele <- gsub("'", '', cmv_new$Allele, perl=TRUE)
 cmv_new$Score <- gsub("'", '', cmv_new$Score, perl=TRUE)
 cmv_new_filt <- cmv_new[cmv_new$Allele %in% bighlathena_list,]
 cmv_new_filt$Score <- as.numeric(cmv_new_filt$Score)
-cmv_new_filt_0.5 <- cmv_new_filt[cmv_new_filt$Score > 0.5,]
+#cmv_new_filt_0.5 <- cmv_new_filt[cmv_new_filt$Score > 0.5,]
 
 rm(cmv_new)
 #cmv_old <- read.csv("/Users/nguyenau/Documents/Coding/Viral_binding_affinity_analysis/cmv_hlathena-predictions.txt", sep='\t')
@@ -37,7 +37,7 @@ rm(cmv_new)
 #colnames(cmv_old_filt) <- c("Peptide", "Allele", "Score")
 #cmv_old_filt <- cmv_old_filt[cmv_old_filt$Allele %in% bighlathena_list,]
 
-cmv_new_filt_0.5 <- cmv_new_filt[cmv_new_filt$Score > 0.5,]
+#cmv_new_filt_0.5 <- cmv_new_filt[cmv_new_filt$Score > 0.5,]
 #cmv_old_filt_0.5 <- cmv_old_filt[cmv_old_filt$Score > 0.5,]
 #rm(cmv_old_filt)
 #rm(cmv_old)
@@ -53,7 +53,7 @@ betaherpes_6a_new$Allele <- gsub("'", '', betaherpes_6a_new$Allele, perl=TRUE)
 betaherpes_6a_new$Score <- gsub("'", '', betaherpes_6a_new$Score, perl=TRUE)
 betaherpes_6a_new_filt <- betaherpes_6a_new[betaherpes_6a_new$Allele %in% bighlathena_list,]
 betaherpes_6a_new_filt$Score <- as.numeric(betaherpes_6a_new_filt$Score)
-betaherpes_6a_new_filt_0.5 <- betaherpes_6a_new_filt[betaherpes_6a_new_filt$Score > 0.5,]
+#betaherpes_6a_new_filt_0.5 <- betaherpes_6a_new_filt[betaherpes_6a_new_filt$Score > 0.5,]
 rm(betaherpes_6a_new)
 ```
 
@@ -65,15 +65,8 @@ bk_new$Allele <- gsub("'", '', bk_new$Allele, perl=TRUE)
 bk_new$Score <- gsub("'", '', bk_new$Score, perl=TRUE)
 bk_new_filt <- bk_new[bk_new$Allele %in% bighlathena_list,]
 bk_new_filt$Score <- as.numeric(bk_new_filt$Score)
-bk_new_filt_0.5 <- bk_new_filt[bk_new_filt$Score > 0.5,]
+#bk_new_filt_0.5 <- bk_new_filt[bk_new_filt$Score > 0.5,]
 rm(bk_new)
-```
-
-```{r load cmv}
-cmv_hlathena <- cmv_new_filt
-cmv_hlathena_0.5 <- cmv_new_filt_0.5
-rm(cmv_new_filt)
-rm(cmv_new_filt_0.5)
 ```
 
 ```{r load covid}
@@ -84,7 +77,7 @@ covid_new$Allele <- gsub("'", '', covid_new$Allele, perl=TRUE)
 covid_new$Score <- gsub("'", '', covid_new$Score, perl=TRUE)
 covid_new_filt <- covid_new[covid_new$Allele %in% bighlathena_list,]
 covid_new_filt$Score <- as.numeric(covid_new_filt$Score)
-covid_new_filt_0.5 <- covid_new_filt[covid_new_filt$Score > 0.5,]
+#covid_new_filt_0.5 <- covid_new_filt[covid_new_filt$Score > 0.5,]
 rm(covid_new)
 
 ```
@@ -97,7 +90,7 @@ ebv_new$Allele <- gsub("'", '', ebv_new$Allele, perl=TRUE)
 ebv_new$Score <- gsub("'", '', ebv_new$Score, perl=TRUE)
 ebv_new_filt <- ebv_new[ebv_new$Allele %in% bighlathena_list,]
 ebv_new_filt$Score <- as.numeric(ebv_new_filt$Score)
-ebv_new_filt_0.5 <- ebv_new_filt[ebv_new_filt$Score > 0.5,]
+#ebv_new_filt_0.5 <- ebv_new_filt[ebv_new_filt$Score > 0.5,]
 rm(ebv_new)
 
 ```
@@ -110,7 +103,7 @@ herpes_1_17_new$Allele <- gsub("'", '', herpes_1_17_new$Allele, perl=TRUE)
 herpes_1_17_new$Score <- gsub("'", '', herpes_1_17_new$Score, perl=TRUE)
 herpes_1_17_new_filt <- herpes_1_17_new[herpes_1_17_new$Allele %in% bighlathena_list,]
 herpes_1_17_new_filt$Score <- as.numeric(herpes_1_17_new_filt$Score)
-herpes_1_17_new_filt_0.5 <- herpes_1_17_new_filt[herpes_1_17_new_filt$Score > 0.5,]
+#herpes_1_17_new_filt_0.5 <- herpes_1_17_new_filt[herpes_1_17_new_filt$Score > 0.5,]
 rm(herpes_1_17_new)
 
 ```
@@ -123,7 +116,7 @@ herpes_2_hg52_new$Allele <- gsub("'", '', herpes_2_hg52_new$Allele, perl=TRUE)
 herpes_2_hg52_new$Score <- gsub("'", '', herpes_2_hg52_new$Score, perl=TRUE)
 herpes_2_hg52_new_filt <- herpes_2_hg52_new[herpes_2_hg52_new$Allele %in% bighlathena_list,]
 herpes_2_hg52_new_filt$Score <- as.numeric(herpes_2_hg52_new_filt$Score)
-herpes_2_hg52_new_filt_0.5 <- herpes_2_hg52_new_filt[herpes_2_hg52_new_filt$Score > 0.5,]
+#herpes_2_hg52_new_filt_0.5 <- herpes_2_hg52_new_filt[herpes_2_hg52_new_filt$Score > 0.5,]
 rm(herpes_2_hg52_new)
 
 ```
@@ -137,9 +130,10 @@ rm(human)
 rm(human_filt)
 human_hlathena$Allele <- gsub("MSi_", "", human_hlathena$Allele)
 human_new_filt <- human_hlathena[human_hlathena$Allele %in% bighlathena_list,]
-human_new_filt$Score <- as.numeric(human_new_filt$Score)
-human_new_filt_0.5 <- human_new_filt[human_new_filt$Score > 0.5,]
 rm(human_hlathena)
+human_new_filt$Score <- as.numeric(human_new_filt$Score)
+colnames(human_new_filt)[1] <- "Peptide"
+#human_new_filt_0.5 <- human_new_filt[human_new_filt$Score > 0.5,]
 ```
 
 ```{r load random}
@@ -150,7 +144,7 @@ random_new$Allele <- gsub("'", '', random_new$Allele, perl=TRUE)
 random_new$Score <- gsub("'", '', random_new$Score, perl=TRUE)
 random_new_filt <- random_new[random_new$Allele %in% bighlathena_list,]
 random_new_filt$Score <- as.numeric(random_new_filt$Score)
-random_new_filt_0.5 <- random_new_filt[random_new_filt$Score > 0.5,]
+#random_new_filt_0.5 <- random_new_filt[random_new_filt$Score > 0.5,]
 rm(random_new)
 
 ```
@@ -589,6 +583,34 @@ write.table(kmers11, "11mers_all_sources.csv", row.names = FALSE, quote = FALSE,
 
 ```
 
+```{r fix HU kmers}
+kmers8 <- read.csv("/Users/nguyenau/Documents/Coding/PeptideAlleleBinding/8mers_all_sources.csv", header=FALSE)
+kmers8 <- tibble(kmer8)
+kmers8 <- kmers8 %>% add_row(V1=human_new_filt[nchar(human_new_filt$Peptide) == 8,]$Peptide, V2="human", V3=human_new_filt[nchar(human_new_filt$Peptide) == 8,]$Score)
+write.table(kmers8, "8mers_all_sources.csv", row.names = FALSE, quote = FALSE, col.names=FALSE, sep=",")
+rm(kmers8)
+
+kmers9 <- read.csv("/Users/nguyenau/Documents/Coding/PeptideAlleleBinding/9mers_all_sources.csv", header=FALSE)
+kmers9 <- tibble(kmers9)
+kmers9 <- kmers9 %>% add_row(V1=human_new_filt[nchar(human_new_filt$Peptide) == 9,]$Peptide, V2="human", V3=human_new_filt[nchar(human_new_filt$Peptide) == 9,]$Score)
+write.table(kmers9, "9mers_all_sources.csv", row.names = FALSE, quote = FALSE, col.names = FALSE, sep=",")
+rm(kmers9)
+
+kmers10 <- read.csv("/Users/nguyenau/Documents/Coding/PeptideAlleleBinding/10mers_all_sources.csv", header=FALSE)
+kmers10 <- tibble(kmers10)
+kmers10 <- kmers10 %>% add_row(V1=human_new_filt[nchar(human_new_filt$Peptide) == 10,]$Peptide, V2="human", V3=human_new_filt[nchar(human_new_filt$Peptide) == 10,]$Score)
+write.table(kmers10, "10mers_all_sources.csv", row.names = FALSE, quote = FALSE, col.names =FALSE, sep=",")
+rm(kmers10)
+
+kmers11 <- read.csv("/Users/nguyenau/Documents/Coding/PeptideAlleleBinding/11mers_all_sources.csv", header=FALSE)
+kmers11 <- tibble(kmers11)
+kmers11 <- kmers11 %>% add_row(V1=human_new_filt[nchar(human_new_filt$Peptide) == 11,]$Peptide, V2="human", V3=human_new_filt[nchar(human_new_filt$Peptide) == 11,]$Score)
+write.table(kmers11, "11mers_all_sources.csv", row.names = FALSE, quote = FALSE, col.names =FALSE, sep=",")
+rm(kmers11)
+
+```
+
+
 ```{r merge files for 8mers}
 map8_peps <- read.csv("8mer_pep_umap.csv", header=FALSE)
 colnames(map8_peps) <- c("Peptide", "X", "Y")
@@ -597,7 +619,7 @@ merged_peps_umap8$Source <- "betaherpes_6a"
 temp <- merge(map8_peps, bk_new_filt, by="Peptide")
 temp$Source <- "bk"
 merged_peps_umap8 <- rbind(merged_peps_umap8, temp)
-temp <- merge(map8_peps, cmv_hlathena, by="Peptide")
+temp <- merge(map8_peps, cmv_new_filt, by="Peptide")
 temp$Source <- "cmv"
 merged_peps_umap8 <- rbind(merged_peps_umap8, temp)
 temp <- merge(map8_peps, covid_new_filt, by="Peptide")
@@ -612,6 +634,7 @@ merged_peps_umap8 <- rbind(merged_peps_umap8, temp)
 temp <- merge(map8_peps, herpes_2_hg52_new_filt, by="Peptide")
 temp$Source <- "herpes_2_hg52"
 merged_peps_umap8 <- rbind(merged_peps_umap8, temp)
+
 colnames(human_new_filt)[1] <- "Peptide"
 temp <- merge(map8_peps, human_new_filt, by="Peptide")
 temp$Source <- "human"
@@ -631,7 +654,7 @@ merged_peps_umap9$Source <- "betaherpes_6a"
 temp <- merge(map9_peps, bk_new_filt, by="Peptide")
 temp$Source <- "bk"
 merged_peps_umap9 <- rbind(merged_peps_umap9, temp)
-temp <- merge(map9_peps, cmv_hlathena, by="Peptide")
+temp <- merge(map9_peps, cmv_new_filt, by="Peptide")
 temp$Source <- "cmv"
 merged_peps_umap9 <- rbind(merged_peps_umap9, temp)
 temp <- merge(map9_peps, covid_new_filt, by="Peptide")
@@ -665,7 +688,7 @@ merged_peps_umap10$Source <- "betaherpes_6a"
 temp <- merge(map10_peps, bk_new_filt, by="Peptide")
 temp$Source <- "bk"
 merged_peps_umap10 <- rbind(merged_peps_umap10, temp)
-temp <- merge(map10_peps, cmv_hlathena, by="Peptide")
+temp <- merge(map10_peps, cmv_new_filt, by="Peptide")
 temp$Source <- "cmv"
 merged_peps_umap10 <- rbind(merged_peps_umap10, temp)
 temp <- merge(map10_peps, covid_new_filt, by="Peptide")
@@ -699,7 +722,7 @@ merged_peps_umap11$Source <- "betaherpes_6a"
 temp <- merge(map11_peps, bk_new_filt, by="Peptide")
 temp$Source <- "bk"
 merged_peps_umap11 <- rbind(merged_peps_umap11, temp)
-temp <- merge(map11_peps, cmv_hlathena, by="Peptide")
+temp <- merge(map11_peps, cmv_new_filt, by="Peptide")
 temp$Source <- "cmv"
 merged_peps_umap11 <- rbind(merged_peps_umap11, temp)
 temp <- merge(map11_peps, covid_new_filt, by="Peptide")
@@ -855,27 +878,28 @@ pdf("PDFgrid_peptide_pairs.pdf")
 require(ash)
 matrix_bins <- tibble(x=character(), y=character(), diff=numeric())
 names <- unique(merged_peps_umap8$Source)
+#names <- names[-8]
 
 for (i in 1:length(names))
 {
-  for (j in 1:length(names))
+  for (j in (i+1):length(names))
   {
-    x <- as.matrix(unique(merged_peps_umap8[merged_peps_umap8$Source == names[i],2:3]))
+    #x <- as.matrix(unique(merged_peps_umap8[merged_peps_umap8$Source == names[i],2:3]))
     #x <- matrix( rnorm(200), 100 , 2)
     ab <- matrix( c(-15,-15,15,15), 2, 2)      
     nbin <- c( 40, 40)                      # 1600 bins #compare binning to umap -> more bins(?)
-    bins <- bin2(x, ab, nbin)
+    bins <- bin2(as.matrix(unique(merged_peps_umap8[merged_peps_umap8$Source == names[i],2:3])), ab, nbin)
     bin_sol <- bins$nc
-    sum(bin_sol)
-    dim(x)[1]
+    #sum(bin_sol)
+    #dim(x)[1]
     bin_sol1 <- bin_sol/(dim(x)[1])
     
-    y <- as.matrix(unique(merged_peps_umap8[merged_peps_umap8$Source == names[j],2:3]))
+    #y <- as.matrix(unique(merged_peps_umap8[merged_peps_umap8$Source == names[j],2:3]))
     #x <- matrix( rnorm(200), 100 , 2)
-    bins <- bin2(y, ab, nbin)
+    bins <- bin2(as.matrix(unique(merged_peps_umap8[merged_peps_umap8$Source == names[j],2:3])), ab, nbin)
     bin_sol <- bins$nc
-    sum(bin_sol)
-    dim(y)[1]
+    #sum(bin_sol)
+    #dim(y)[1]
     bin_sol2 <- bin_sol/(dim(y)[1])
     diff_bins <- bin_sol1 - bin_sol2
     sum_bins <- sum(abs(diff_bins))
@@ -904,6 +928,7 @@ ggplot(diffs, aes(x=Matrix_diff, y=Correlation)) + geom_point() + geom_smooth(me
 require(ash)
 matrix_bins <- tibble(x=character(), y=character(), diff=numeric())
 names <- unique(merged_peps_umap9$Source)
+#names <- names[-8]
 
 for (i in 1:length(names))
 {
@@ -953,6 +978,7 @@ ggplot(diffs, aes(x=Matrix_diff, y=Correlation)) + geom_point() + geom_smooth(me
 require(ash)
 matrix_bins <- tibble(x=character(), y=character(), diff=numeric())
 names <- unique(merged_peps_umap10$Source)
+#names <- names[-8]
 
 for (i in 1:length(names))
 {
@@ -1002,6 +1028,7 @@ ggplot(diffs, aes(x=Matrix_diff, y=Correlation)) + geom_point() + geom_smooth(me
 require(ash)
 matrix_bins <- tibble(x=character(), y=character(), diff=numeric())
 names <- unique(merged_peps_umap11$Source)
+#names <- names[-8]
 
 for (i in 1:length(names))
 {
