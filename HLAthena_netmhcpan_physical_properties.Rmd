@@ -748,7 +748,18 @@ merged_peps_umap11 <- rbind(merged_peps_umap11, temp)
 write.table(merged_peps_umap11, "merged_peps_umap11mer.csv", row.names=FALSE, quote=FALSE, sep=',')
 ```
 
-
+```{r remove}
+rm(temp)
+rm(random_new_filt)
+rm(human_new_filt)
+rm(herpes_2_hg52_new_filt)
+rm(herpes_1_17_new_filt)
+rm(ebv_new_filt)
+rm(covid_new_filt)
+rm(cmv_new_filt)
+rm(bk_new_filt)
+rm(betaherpes_6a_new_filt)
+```
 
 ```{r hlathenaranks}
 hlathena_ranks <- merged_orders
@@ -884,19 +895,19 @@ for (i in 1:length(names))
 {
   for (j in (i+1):length(names))
   {
-    #x <- as.matrix(unique(merged_peps_umap8[merged_peps_umap8$Source == names[i],2:3]))
+    x <- as.matrix(unique(merged_peps_umap8[merged_peps_umap8$Source == names[i],2:3]))
     #x <- matrix( rnorm(200), 100 , 2)
     ab <- matrix( c(-15,-15,15,15), 2, 2)      
     nbin <- c( 40, 40)                      # 1600 bins #compare binning to umap -> more bins(?)
-    bins <- bin2(as.matrix(unique(merged_peps_umap8[merged_peps_umap8$Source == names[i],2:3])), ab, nbin)
+    bins <- bin2(x, ab, nbin)
     bin_sol <- bins$nc
     #sum(bin_sol)
     #dim(x)[1]
     bin_sol1 <- bin_sol/(dim(x)[1])
     
-    #y <- as.matrix(unique(merged_peps_umap8[merged_peps_umap8$Source == names[j],2:3]))
+    y <- as.matrix(unique(merged_peps_umap8[merged_peps_umap8$Source == names[j],2:3]))
     #x <- matrix( rnorm(200), 100 , 2)
-    bins <- bin2(as.matrix(unique(merged_peps_umap8[merged_peps_umap8$Source == names[j],2:3])), ab, nbin)
+    bins <- bin2(y, ab, nbin)
     bin_sol <- bins$nc
     #sum(bin_sol)
     #dim(y)[1]
@@ -932,7 +943,7 @@ names <- unique(merged_peps_umap9$Source)
 
 for (i in 1:length(names))
 {
-  for (j in 1:length(names))
+  for (j in (i+1):length(names))
   {
     x <- as.matrix(unique(merged_peps_umap9[merged_peps_umap9$Source == names[i],2:3]))
     #x <- matrix( rnorm(200), 100 , 2)
@@ -982,7 +993,7 @@ names <- unique(merged_peps_umap10$Source)
 
 for (i in 1:length(names))
 {
-  for (j in 1:length(names))
+  for (j in (i+1):length(names))
   {
     x <- as.matrix(unique(merged_peps_umap10[merged_peps_umap10$Source == names[i],2:3]))
     #x <- matrix( rnorm(200), 100 , 2)
@@ -1032,7 +1043,7 @@ names <- unique(merged_peps_umap11$Source)
 
 for (i in 1:length(names))
 {
-  for (j in 1:length(names))
+  for (j in (i+1):length(names))
   {
     x <- as.matrix(unique(merged_peps_umap11[merged_peps_umap11$Source == names[i],2:3]))
     #x <- matrix( rnorm(200), 100 , 2)
