@@ -748,6 +748,13 @@ merged_peps_umap11 <- rbind(merged_peps_umap11, temp)
 write.table(merged_peps_umap11, "merged_peps_umap11mer.csv", row.names=FALSE, quote=FALSE, sep=',')
 ```
 
+```{r read}
+merged_peps_umap8 <- read.csv("merged_peps_umap8mer.csv")
+merged_peps_umap9 <- read.csv("merged_peps_umap9mer.csv")
+merged_peps_umap10 <- read.csv("merged_peps_umap10mer.csv")
+merged_peps_umap11 <- read.csv("merged_peps_umap11mer.csv")
+```
+
 ```{r remove}
 rm(temp)
 rm(random_new_filt)
@@ -881,6 +888,13 @@ for (i in 1:length(plot_list)) {
 }
 library(gridExtra)
 pdf("PDFgrid_peptide_pairs.pdf")
+
+```
+
+
+```{r allplots}
+
+ggplot(unique(merged_peps_umap8[,2:3]), aes(x=X, y=Y, color=Source)) + geom_point()
 
 ```
 
