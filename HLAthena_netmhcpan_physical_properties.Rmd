@@ -862,39 +862,40 @@ ggplot(data = melted_cormat, aes(Var2, Var1, fill = value))+
 #df <- data.frame(x=df$V1, y=df$V2, source=df$source)
 #ggplot(data=df, aes(x=x, y=y)) + geom_point(aes(color=source))
 
-library(GGally)
-names <- unique(merged_peps_umap8$Source)
-plot_list = list()
-count <- 1
-for (i in 1:length(names))
-{
-  for (j in 1:length(names))
-  {
-    if (i != j)
-    {
-    tempdata <- df[df$source == names[i] | df$source == names[j],]
-    p = ggplot(data=tempdata, aes(x=x, y=y)) + geom_point(aes(color=source))
-    plot_list[[count]] = p
-    count <- count + 1
-    }
-  }
-}
+#library(GGally)
+#names <- unique(merged_peps_umap8$Source)
+#plot_list = list()
+#count <- 1
+#for (i in 1:length(names))
+#{
+#  for (j in 1:length(names))
+#  {
+#    if (i != j)
+#    {
+#    tempdata <- df[df$source == names[i] | df$source == names[j],]
+#    p = ggplot(data=tempdata, aes(x=x, y=y)) + geom_point(aes(color=source))
+#    plot_list[[count]] = p
+#    count <- count + 1
+#    }
+#  }
+#}
 
-for (i in 1:length(plot_list)) {
-    file_name = paste("source_peptides_pairs_", i, ".tiff", sep="")
-    tiff(file_name)
-    print(plot_list[[i]])
-    dev.off()
-}
-library(gridExtra)
-pdf("PDFgrid_peptide_pairs.pdf")
+#for (i in 1:length(plot_list)) {
+#    file_name = paste("source_peptides_pairs_", i, ".tiff", sep="")
+#    tiff(file_name)
+#    print(plot_list[[i]])
+#    dev.off()
+#}
+#library(gridExtra)
+#pdf("PDFgrid_peptide_pairs.pdf")
 
 ```
 
 
 ```{r allplots}
-
-ggplot(unique(merged_peps_umap8[,2:3]), aes(x=X, y=Y, color=Source)) + geom_point()
+temp <- unique(merged_peps_umap8[,2:3])
+dim(temp)
+ggplot(temp[sample(nrow(temp), 3), ], aes(x=X, y=Y)) + geom_point()
 
 ```
 
