@@ -911,6 +911,21 @@ ggplot(temp11[sample(nrow(temp11), 10000), ], aes(x=X, y=Y)) + geom_point()
 
 ```
 
+```{r HLAtHENA}
+path <- "NIHMS1541512-supplement-Sup_Data1.xlsx"
+library(readxl)
+hlathena_data <- lapply(excel_sheets(path), read_excel, path = path)
+hlathena_data <- hlathena_data[-1]
+
+hlathena_seqs <- list()
+for (i in 1:length(hlathena_data))
+{
+  test <- as.data.frame(hlathena_data[i])
+  hlathena_seqs <- append(hlathena_seqs, test$sequence)
+}
+
+table_lens <- table(nchar(hlathena_seqs))
+```
 
 ```{r 8mer matrix bins}
 require(ash)
