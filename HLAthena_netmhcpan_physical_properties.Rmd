@@ -893,9 +893,21 @@ ggplot(data = melted_cormat, aes(Var2, Var1, fill = value))+
 
 
 ```{r allplots}
-temp <- unique(merged_peps_umap8[,2:3])
+temp8 <- unique(merged_peps_umap8[,2:3])
 dim(temp)
-ggplot(temp[sample(nrow(temp), 3), ], aes(x=X, y=Y)) + geom_point()
+ggplot(temp[sample(nrow(temp), 10000), ], aes(x=X, y=Y)) + geom_point()
+
+temp9 <- unique(merged_peps_umap9[,2:3])
+dim(temp9)
+ggplot(temp9[sample(nrow(temp9), 10000), ], aes(x=X, y=Y)) + geom_point()
+
+temp10 <- unique(merged_peps_umap10[,2:3])
+dim(temp10)
+ggplot(temp10[sample(nrow(temp10), 10000), ], aes(x=X, y=Y)) + geom_point()
+
+temp11 <- unique(merged_peps_umap11[,2:3])
+dim(temp11)
+ggplot(temp11[sample(nrow(temp11), 10000), ], aes(x=X, y=Y)) + geom_point()
 
 ```
 
