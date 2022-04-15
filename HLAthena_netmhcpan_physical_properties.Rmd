@@ -816,7 +816,7 @@ library(matrixStats)
 netmhcpan_ranks$sd <- rowSds(as.matrix(netmhcpan_ranks))
 write.csv(netmhcpan_ranks, "/Users/nguyenau/Documents/Coding/PeptideAlleleBinding/netmhcpan_ranks")
 mean(netmhcpan_ranks$sd[1:10])
-
+netmhcpan_ranks <- read.csv("/Users/nguyenau/Documents/Coding/PeptideAlleleBinding/netmhcpan_ranks")
 
 ###NETMHCPAN ALL VIRUS COR
 cormat <- cor(merged, method="spearman", use="pairwise.complete.obs")
@@ -835,6 +835,51 @@ ggplot(data = melted_cormat, aes(Var2, Var1, fill = value))+
   theme(axis.text.x = element_text(angle = 45, vjust = 1, 
                                    size = 5, hjust = 1))+
   coord_fixed()
+```
+
+```{r}
+netmhcpan_ranks <- read.csv("/Users/nguyenau/Documents/Coding/PeptideAlleleBinding/netmhcpan_ranks")
+head(hlathena_ranks)
+mhcflurry_random <- read.csv("mhcflurry_random.csv")
+mhcnuggets_random <- read.csv("random_mhcnuggets.txt", header=FALSE)
+mhcflurry_random_order <- table(mhcflurry_random[mhcflurry_random$mhcflurry_prediction <= 500,]$allele)
+mhcflurry_random_order <- as.data.frame(mhcflurry_random_order)
+
+mhcnuggets_random_order <- as.data.frame(table(mhcnuggets_random[mhcnuggets_random$V2 <= 500,]$V3))
+mhcnuggets_random_order$Var1 <- gsub(':', "", mhcnuggets_random_order$Var1)
+mhcnuggets_random_order$Var1 <- gsub('_out.txt', "", mhcnuggets_random_order$Var1)
+mhcnuggets_random_order$Var1 <- gsub('HLA-', "", mhcnuggets_random_order$Var1)
+
+mhcnuggets_random_order$mhcnuggets_rank <- rank(-mhcnuggets_random_order$Freq)
+mhcflurry_random_order$mhcflurry_rank <- rank(-mhcflurry_random_order$Freq)
+
+combined_order <- merge(mhcflurry_random_order, mhcnuggets_random_order, by="Var1",all=TRUE)
+cor.test(combined_order$mhcflurry_rank, combined_order$mhcnuggets_rank, method="spearman", use="pairwise.complete.obs")
+combined_order <- merge(combined_order, hlathena_ranks[,c("Var1", "random")])
+
+cor.test(combined_order$mhcflurry_rank, combined_order$random, method="spearman", use="pairwise.complete.obs")
+cor.test(combined_order$random, combined_order$mhcnuggets_rank, method="spearman", use="pairwise.complete.obs")
+
+
+
+mhcflurry_cmv <- read.csv("mhcflurry_cmv.csv")
+mhcnuggets_cmv <- read.csv("cmv_mhcnuggets.txt", header=FALSE)
+mhcflurry_cmv_order <- table(mhcflurry_cmv[mhcflurry_cmv$mhcflurry_prediction <= 500,]$allele)
+mhcflurry_cmv_order <- as.data.frame(mhcflurry_cmv_order)
+
+mhcnuggets_cmv_order <- as.data.frame(table(mhcnuggets_cmv[mhcnuggets_cmv$V2 <= 500,]$V3))
+mhcnuggets_cmv_order$Var1 <- gsub(':', "", mhcnuggets_cmv_order$Var1)
+mhcnuggets_cmv_order$Var1 <- gsub('_out.txt', "", mhcnuggets_cmv_order$Var1)
+mhcnuggets_cmv_order$Var1 <- gsub('HLA-', "", mhcnuggets_cmv_order$Var1)
+
+mhcnuggets_cmv_order$mhcnuggets_rank <- rank(-mhcnuggets_cmv_order$Freq)
+mhcflurry_cmv_order$mhcflurry_rank <- rank(-mhcflurry_cmv_order$Freq)
+
+mhcnuggets_merge <- merge(mhcnuggets_cmv_order, mhcnuggets_random_order, by="Var1")
+cor.test(mhcnuggets_merge$mhcnuggets_rank.x, mhcnuggets_merge$mhcnuggets_rank.y, method="spearman",use="pairwise.complete.obs")
+
+mhcflurry_merge <- merge(mhcflurry_cmv_order, mhcflurry_random_order, by="Var1")
+cor.test(mhcflurry_merge$)
 ```
 
 
@@ -917,17 +962,60 @@ library(readxl)
 hlathena_data <- lapply(excel_sheets(path), read_excel, path = path)
 hlathena_data <- hlathena_data[-1]
 
-hlathena_seqs <- list()
+hlathena_seqs <- matrix(data=NA, nrow=0, ncol=2)
+hlathena_seqs_8 <- list()
+hlathena_seqs_9 <- list()
+hlathena_seqs_10 <- list()
+hlathena_seqs_11 <- list()
+
 for (i in 1:length(hlathena_data))
 {
   test <- as.data.frame(hlathena_data[i])
-  hlathena_seqs <- append(hlathena_seqs, test$sequence)
+  tempdf <- cbind(test$sequence,substr(test$directory,1,5))
+  hlathena_seqs <- rbind(hlathena_seqs, tempdf)
 }
+hlathena_seqs <- as.data.frame(hlathena_seqs)
+
+for (i in 1:length(hlathena_data))
+{
+  test <- as.data.frame(hlathena_data[i])
+  hlathena_seqs_8 <- append(hlathena_seqs_8, sum(nchar(test$sequence) == 8))
+}
+
+for (i in 1:length(hlathena_data))
+{
+  test <- as.data.frame(hlathena_data[i])
+  hlathena_seqs_9 <- append(hlathena_seqs_9, sum(nchar(test$sequence) == 9))
+}
+
+for (i in 1:length(hlathena_data))
+{
+  test <- as.data.frame(hlathena_data[i])
+  hlathena_seqs_10 <- append(hlathena_seqs_10, sum(nchar(test$sequence) == 10))
+}
+
+for (i in 1:length(hlathena_data))
+{
+  test <- as.data.frame(hlathena_data[i])
+  hlathena_seqs_11 <- append(hlathena_seqs_11, sum(nchar(test$sequence) == 11))
+}
+
+hist(as.numeric(hlathena_seqs_8), xlim=range(0,3000))
+hist(as.numeric(hlathena_seqs_9), xlim=range(0,3000))
+hist(as.numeric(hlathena_seqs_10), xlim=range(0,3000))
+hist(as.numeric(hlathena_seqs_11), xlim=range(0,3000))
 
 table_lens <- table(nchar(hlathena_seqs))
 table_lens
-rm(hlathena_data)
-rm(hlathena_seqs)
+
+
+hlathena_training_alleles_order <- table(hlathena_seqs$V2)
+hlathena_training_alleles_order <- as.data.frame(sort(hlathena_training_alleles_order))
+hlathena_training_alleles_order
+train_order <- merge(hlathena_ranks, hlathena_training_alleles_order, by="Var1")
+cor.test(train_order$Freq, train_order$sd)
+cor.test(train_order$Freq, train_order$avg)
+
 ```
 
 ```{r 8mer matrix bins}
@@ -964,15 +1052,15 @@ for (i in 1:length(names))
 }
 
 library(reshape2)
-matrix_bins <- as.data.frame(matrix_bins)
-colnames(matrix_bins) <- c("Var1", "Var2", "Diff")
-matrix_bins$Diff <- abs(matrix_bins$Diff)
-matrix_bins$Var1 <- gsub("_scores", "", matrix_bins$Var1)
-matrix_bins$Var2 <- gsub("_scores", "", matrix_bins$Var2)
+matrix_bins8 <- as.data.frame(matrix_bins)
+colnames(matrix_bins8) <- c("Var1", "Var2", "Diff")
+matrix_bins8$Diff <- abs(matrix_bins8$Diff)
+matrix_bins8$Var1 <- gsub("_scores", "", matrix_bins8$Var1)
+matrix_bins8$Var2 <- gsub("_scores", "", matrix_bins8$Var2)
 
 cormat <- cor(merged_order_8mers[,-1], method="spearman")
 melted_cormat <- melt(cormat)
-diffs <- merge(matrix_bins, melted_cormat, by=c("Var1", "Var2"))
+diffs <- merge(matrix_bins8, melted_cormat, by=c("Var1", "Var2"))
 colnames(diffs)[3] <- "Matrix_diff"
 colnames(diffs)[4] <- "Correlation"
 diffs <- diffs[!diffs$Correlation == 1,]
